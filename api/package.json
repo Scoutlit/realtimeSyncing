@@ -20,5 +20,9 @@
     "url": "git://github.com/ovidio/api.git"
   },
   "author": "ovidio",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "faker": "^3.0.1",
+    "sails-hook-seed": "^0.2.6"
+  }
 }

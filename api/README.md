@@ -1,3 +1,13 @@
-# api
+# Contact System Data API 
 
-a [Sails](http://sailsjs.org) application
+## Dependencies
+* [sails](http://saisjs.org)
+  ` $npm install -g sails`
+
+
+## How to run
+
+```
+$ npm install
+$ sails lift
+```
