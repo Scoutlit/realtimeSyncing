@@ -1,0 +1,15 @@
+<md-card ng-repeat="contact in contactsCtrl.contacts">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{ contact.name }}</span>
+      <span class="md-subhead">{{ contact.phoneNumber }}</span>
+    </md-card-title-text>
+    <md-card-title-media>
+      <div class="md-media-sm card-media"></div>
+    </md-card-title-media>
+  </md-card-title>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button ng-click="contactsCtrl.editContact(contact)">Edit</md-button>
+    <md-button>Share</md-button>
+  </md-card-actions>
+</md-card>
