@@ -1,6 +1,6 @@
 (function(module) {
 
-  module('webApp', [])
+  module('webApp', ['ngMaterial'])
     .controller('AppCtrl', function($http) {
 
       var app = this;
