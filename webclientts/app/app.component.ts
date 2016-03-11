@@ -6,20 +6,24 @@ import {Component} from 'angular2/core';
     <div>
       <h1>My First Angular 2 App</h1>
       <button (click)="addName()">Add</button>
-      <div *ngFor="#name of names">{{ name }}</div>
+      <div *ngFor="#contact of contacts">{{ contact.name }}</div>
     </div>
 `
 })
 export class AppComponent { 
 
-  names: string [];
+  contacts: ContactElement [];
 
   constructor() {
-    this.names = ["Ovi", "Jonathan", "Wendy"];
+    this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
   }
 
   addName() {
-    this.names.push("WTF");
+    this.contacts.push({ name: "WTF"});
   }
 
+}
+
+class ContactElement {
+    name: string;
 }

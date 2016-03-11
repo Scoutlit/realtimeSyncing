@@ -11,7 +11,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var AppComponent;
+    var AppComponent, ContactElement;
     return {
         setters:[
             function (core_1_1) {
@@ -20,21 +20,26 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.names = ["Ovi", "Jonathan", "Wendy"];
+                    this.contacts = [{ name: "Wendy" }, { name: "Jonathan" }, { name: "Wendy" }];
                 }
                 AppComponent.prototype.addName = function () {
-                    this.names.push("WTF");
+                    this.contacts.push({ name: "WTF" });
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <div>\n      <h1>My First Angular 2 App</h1>\n      <button (click)=\"addName()\">Add</button>\n      <div *ngFor=\"#name of names\">{{ name }}</div>\n    </div>\n"
+                        template: "\n    <div>\n      <h1>My First Angular 2 App</h1>\n      <button (click)=\"addName()\">Add</button>\n      <div *ngFor=\"#contact of contacts\">{{ contact.name }}</div>\n    </div>\n"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             }());
             exports_1("AppComponent", AppComponent);
+            ContactElement = (function () {
+                function ContactElement() {
+                }
+                return ContactElement;
+            }());
         }
     }
 });
