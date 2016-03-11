@@ -1,18 +1,20 @@
-import { Component, View } from 'angular2/core';
+import { Component, View, Input } from 'angular2/core';
 import { Http, HTTP_PROVIDERS } from 'angular2/http';
 import Contact from './Contact.js';
 
 @Component({
   selector: 'contact-list',
 //  template: '<contact-card *ngFor="#contact of contacts" [contact]="contact"></contact-card>',
-  //template: '<div><p (click)="sayHi()">Say {{ greeting }}</p><div *ngFor="#contact of contacts">{{ contact.name }}</div></div>',
-  //directives: [Contact],
+//  template: '<div><p (click)="sayHi()">Say {{ greeting }}</p><div *ngFor="#contact of contacts">{{ contact.name }}</div></div>',
   providers: [HTTP_PROVIDERS]
 })
 @View({
+//  directives: [CORE_DIRECTIVES],
   templateUrl: 'app/components/contact-list.html',
 })
 class ContactList {
+
+  contacts = [{ name: 'Hello There'}];
 
   static get parameters() {
     return [[Http]];
@@ -20,13 +22,15 @@ class ContactList {
 
   ngOnInit() {
     //this.getContacts();
-    this.contacts = [{ name: 'Hello There'}];
+    console.log('contacts', this.contacts);
     this.greeting = 'Hi';
   }
 
-  constructor(http) {
+  ngOnChanges(changedRecord) {
+    console.log('init', changedRecord);
+  }
 
-    //this.contacts = [{ name: 'Hello There'}];
+  constructor(http) {
 
     this.http = http;
 
@@ -41,7 +45,7 @@ class ContactList {
   sayHi() {
     this.greeting = 'Hello';
     console.log('Hi', this);
-    this.contacts.push({name: "WTF"});
+    this.contacts.push({ name: "WTF" });
   }
 }
 
