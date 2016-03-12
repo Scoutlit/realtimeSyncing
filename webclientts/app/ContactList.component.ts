@@ -1,5 +1,6 @@
-import {Component} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Component, OnInit} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
+import {Observable}     from 'rxjs/Observable';
 
 @Component({
     selector: 'contact-list',
@@ -7,19 +8,18 @@ import {Http} from 'angular2/http';
     <div *ngFor="#contact of contacts">{{ contact.name }}</div>
 `
 })
-export class AppComponent { 
+
+export class ContactList implements OnInit {
 
   contacts: ContactElement [];
 
-  constructor(http: Htpp) {
-    //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
-    http.get('http://localhost:8888/contact')
-      .map(resp => resp.json())
-      .subscribe(data => this.contacts = data);
-  }
+  constructor(private http: Http) {}
 
-  addName() {
-    this.contacts.push({ name: "WTF"});
+  ngOnInit() {
+     //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
+    this.http.get('http://localhost:8888/contact')
+      .map(resp => resp.json())
+      .subscribe(data => this.contacts = data)
   }
 
 }

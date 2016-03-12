@@ -1,32 +1,17 @@
 import {Component} from 'angular2/core';
-import {ContactList} from './ContiactList.js';
+import {ContactList} from './ContactList.component';
+import {HTTP_PROVIDERS}    from 'angular2/http';
 
 @Component({
     selector: 'my-app',
     template: `
     <div>
       <h1>My First Angular 2 App</h1>
-      <button (click)="addName()">Add</button>
-      <div *ngFor="#contact of contacts">{{ contact.name }}</div>
-      <contact-list></contact-list
+      <contact-list></contact-list>
     </div>
 `
-  directives: [ContactList]
+    directives: [ContactList],
+    providers: [HTTP_PROVIDERS]
 })
 export class AppComponent { 
-
-  contacts: ContactElement [];
-
-  constructor() {
-    this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
-  }
-
-  addName() {
-    this.contacts.push({ name: "WTF"});
-  }
-
-}
-
-class ContactElement {
-    name: string;
 }
