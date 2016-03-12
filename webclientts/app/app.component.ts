@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {ContactList} from './ContiactList.js';
 
 @Component({
     selector: 'my-app',
@@ -7,8 +8,10 @@ import {Component} from 'angular2/core';
       <h1>My First Angular 2 App</h1>
       <button (click)="addName()">Add</button>
       <div *ngFor="#contact of contacts">{{ contact.name }}</div>
+      <contact-list></contact-list
     </div>
 `
+  directives: [ContactList]
 })
 export class AppComponent { 
 
