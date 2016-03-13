@@ -27,6 +27,9 @@ System.register(['angular2/core', './ContactList.component'], function(exports_1
                 ContactElement.prototype.ngOnInit = function () {
                     // console.log('contact - ', this.contact)
                 };
+                ContactElement.prototype.editContact = function (c) {
+                    alert("Needs implementation " + c.name);
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', ContactList_component_1.ContactItem)

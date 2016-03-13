@@ -9,6 +9,7 @@ import {ContactElement} from './ContactElement.component';
     template: `
       <div class="contact-list">
         <h2>Contact List</h2>
+        <button (click)="addContact()">Add</button>
         <contact-element *ngFor="#contact of contacts" [contact]="contact"></contact-element>
       </div>
     `,
@@ -29,6 +30,10 @@ export class ContactList implements OnInit {
         this.contacts = data
         // console.log("contacts - ", this.contacts);
       })
+  }
+
+  addContact() {
+    alert("Needs implementation");
   }
 
 }

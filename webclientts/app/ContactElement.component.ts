@@ -22,4 +22,8 @@ export class ContactElement implements OnInit {
     // console.log('contact - ', this.contact)
   }
 
+  editContact(c: ContactItem) {
+    alert("Needs implementation " + c.name);
+  }
+
 }
