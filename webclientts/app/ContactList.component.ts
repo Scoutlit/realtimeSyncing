@@ -5,8 +5,9 @@ import {ContactElement} from './ContactElement.component';
 
 @Component({
     selector: 'contact-list',
+    styles: [`.contact-list { padding: 5px;}`]
     template: `
-      <div>
+      <div class="contact-list">
         <h2>Contact List</h2>
         <contact-element *ngFor="#contact of contacts" [contact]="contact"></contact-element>
       </div>
@@ -26,7 +27,7 @@ export class ContactList implements OnInit {
       .map(resp => resp.json())
       .subscribe(data => {
         this.contacts = data
-        console.log("contacts - ", this.contacts);
+        // console.log("contacts - ", this.contacts);
       })
   }
 

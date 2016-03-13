@@ -30,7 +30,8 @@ System.register(['angular2/core', './ContactList.component', 'angular2/http'], f
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <div>\n      <h1>Contact Manager Angular Client</h1>\n      <contact-list></contact-list>\n    </div>\n",
+                        styles: [".contact-manager-title { color: #121212; }"],
+                        template: "\n    <div>\n      <h1 class=\"contact-manager-title\">Contact Manager Angular Client</h1>\n      <contact-list></contact-list>\n    </div>\n",
                         directives: [ContactList_component_1.ContactList],
                         providers: [http_1.HTTP_PROVIDERS]
                     }), 

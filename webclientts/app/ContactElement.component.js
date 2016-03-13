@@ -25,7 +25,7 @@ System.register(['angular2/core', './ContactList.component'], function(exports_1
                 function ContactElement() {
                 }
                 ContactElement.prototype.ngOnInit = function () {
-                    console.log('contact - ', this.contact);
+                    // console.log('contact - ', this.contact)
                 };
                 __decorate([
                     core_1.Input(), 
@@ -34,7 +34,8 @@ System.register(['angular2/core', './ContactList.component'], function(exports_1
                 ContactElement = __decorate([
                     core_1.Component({
                         selector: 'contact-element',
-                        template: "\n      <div>\n        <h2>{{ contact.name }}</h2>\n        <h3>{{ contact.phoneNumber }}</h3>\n      </div>\n    "
+                        styles: [".contact-card { margin-bottom: 5px; padding: 10px; border: 1px solid #c3c3c3 }"],
+                        template: "\n      <div class='contact-card'>\n        <h2>{{ contact.name }}</h2>\n        <h3>{{ contact.phoneNumber }}</h3>\n        <button (click)=\"editContact(contact)\">Edit</button>\n      </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ContactElement);

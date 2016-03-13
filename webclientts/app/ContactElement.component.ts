@@ -3,10 +3,12 @@ import {ContactItem} from './ContactList.component'
 
 @Component({
     selector: 'contact-element',
+    styles: [`.contact-card { margin-bottom: 5px; padding: 10px; border: 1px solid #c3c3c3 }`]
     template: `
-      <div>
+      <div class='contact-card'>
         <h2>{{ contact.name }}</h2>
         <h3>{{ contact.phoneNumber }}</h3>
+        <button (click)="editContact(contact)">Edit</button>
       </div>
     `
 })
@@ -17,7 +19,7 @@ export class ContactElement implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('contact - ', this.contact)
+    // console.log('contact - ', this.contact)
   }
 
 }

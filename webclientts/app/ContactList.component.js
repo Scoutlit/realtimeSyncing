@@ -35,13 +35,14 @@ System.register(['angular2/core', 'angular2/http', './ContactElement.component']
                         .map(function (resp) { return resp.json(); })
                         .subscribe(function (data) {
                         _this.contacts = data;
-                        console.log("contacts - ", _this.contacts);
+                        // console.log("contacts - ", this.contacts);
                     });
                 };
                 ContactList = __decorate([
                     core_1.Component({
                         selector: 'contact-list',
-                        template: "\n      <div>\n        <h2>Contact List</h2>\n        <contact-element *ngFor=\"#contact of contacts\" [contact]=\"contact\"></contact-element>\n      </div>\n    ",
+                        styles: [".contact-list { padding: 5px;}"],
+                        template: "\n      <div class=\"contact-list\">\n        <h2>Contact List</h2>\n        <contact-element *ngFor=\"#contact of contacts\" [contact]=\"contact\"></contact-element>\n      </div>\n    ",
                         directives: [ContactElement_component_1.ContactElement]
                     }), 
                     __metadata('design:paramtypes', [http_1.Http])

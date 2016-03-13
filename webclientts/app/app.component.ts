@@ -4,9 +4,10 @@ import {HTTP_PROVIDERS}    from 'angular2/http';
 
 @Component({
     selector: 'my-app',
+    styles:[`.contact-manager-title { color: #121212; }`]
     template: `
     <div>
-      <h1>Contact Manager Angular Client</h1>
+      <h1 class="contact-manager-title">Contact Manager Angular Client</h1>
       <contact-list></contact-list>
     </div>
 `
