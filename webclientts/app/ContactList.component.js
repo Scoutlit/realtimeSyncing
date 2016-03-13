@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', './ContactElement.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
-    var ContactList, ContactElement;
+    var core_1, http_1, ContactElement_component_1;
+    var ContactList, ContactItem;
     return {
         setters:[
             function (core_1_1) {
@@ -19,6 +19,9 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (ContactElement_component_1_1) {
+                ContactElement_component_1 = ContactElement_component_1_1;
             }],
         execute: function() {
             ContactList = (function () {
@@ -30,23 +33,28 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                     //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
                     this.http.get('http://localhost:8888/contact')
                         .map(function (resp) { return resp.json(); })
-                        .subscribe(function (data) { return _this.contacts = data; });
+                        .subscribe(function (data) {
+                        _this.contacts = data;
+                        console.log("contacts - ", _this.contacts);
+                    });
                 };
                 ContactList = __decorate([
                     core_1.Component({
                         selector: 'contact-list',
-                        template: "\n    <div *ngFor=\"#contact of contacts\">{{ contact.name }}</div>\n"
+                        template: "\n      <div>\n        <h2>Contact List</h2>\n        <contact-element *ngFor=\"#contact of contacts\" [contact]=\"contact\"></contact-element>\n      </div>\n    ",
+                        directives: [ContactElement_component_1.ContactElement]
                     }), 
                     __metadata('design:paramtypes', [http_1.Http])
                 ], ContactList);
                 return ContactList;
             }());
             exports_1("ContactList", ContactList);
-            ContactElement = (function () {
-                function ContactElement() {
+            ContactItem = (function () {
+                function ContactItem() {
                 }
-                return ContactElement;
+                return ContactItem;
             }());
+            exports_1("ContactItem", ContactItem);
         }
     }
 });

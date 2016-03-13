@@ -1,17 +1,22 @@
 import {Component, OnInit} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {Observable}     from 'rxjs/Observable';
+import {ContactElement} from './ContactElement.component';
 
 @Component({
     selector: 'contact-list',
     template: `
-    <div *ngFor="#contact of contacts">{{ contact.name }}</div>
-`
+      <div>
+        <h2>Contact List</h2>
+        <contact-element *ngFor="#contact of contacts" [contact]="contact"></contact-element>
+      </div>
+    `,
+    directives: [ContactElement]
 })
 
 export class ContactList implements OnInit {
 
-  contacts: ContactElement [];
+  contacts: ContactItem [];
 
   constructor(private http: Http) {}
 
@@ -19,11 +24,15 @@ export class ContactList implements OnInit {
      //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
     this.http.get('http://localhost:8888/contact')
       .map(resp => resp.json())
-      .subscribe(data => this.contacts = data)
+      .subscribe(data => {
+        this.contacts = data
+        console.log("contacts - ", this.contacts);
+      })
   }
 
 }
 
-class ContactElement {
+export class ContactItem {
     name: string;
+    phoneNumber: string;
 }
