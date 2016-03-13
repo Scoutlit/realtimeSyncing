@@ -5,7 +5,8 @@ import {ContactItem} from './ContactList.component'
     selector: 'contact-element',
     template: `
       <div>
-        <span>{{ contact.name }}</span>
+        <h2>{{ contact.name }}</h2>
+        <h3>{{ contact.phoneNumber }}</h3>
       </div>
     `
 })

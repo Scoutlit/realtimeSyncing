@@ -34,7 +34,7 @@ System.register(['angular2/core', './ContactList.component'], function(exports_1
                 ContactElement = __decorate([
                     core_1.Component({
                         selector: 'contact-element',
-                        template: "\n      <div>\n        <span>{{ contact.name }}</span>\n      </div>\n    "
+                        template: "\n      <div>\n        <h2>{{ contact.name }}</h2>\n        <h3>{{ contact.phoneNumber }}</h3>\n      </div>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ContactElement);

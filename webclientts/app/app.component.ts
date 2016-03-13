@@ -6,7 +6,7 @@ import {HTTP_PROVIDERS}    from 'angular2/http';
     selector: 'my-app',
     template: `
     <div>
-      <h1>My First Angular 2 App</h1>
+      <h1>Contact Manager Angular Client</h1>
       <contact-list></contact-list>
     </div>
 `
