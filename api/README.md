@@ -5,7 +5,7 @@
   ` $ npm install -g sails `
 
 
-## How to run
+## Installation
 
 ```
 $ npm install

@@ -3,9 +3,11 @@
 A contact manager application that was created to simulate a synchronization strategy between multiple endpoints.
 
 ## Dependencies
+
 * [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 
-## Usage
+## Installation
+
 ```
 $ npm install
 $ npm start
