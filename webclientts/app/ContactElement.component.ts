@@ -3,7 +3,7 @@ import {ContactItem} from './ContactList.component'
 
 @Component({
     selector: 'contact-element',
-    styles: [`.contact-card { margin-bottom: 5px; padding: 10px; border: 1px solid #c3c3c3 }`]
+    styles: [`.contact-card { margin-bottom: 5px; padding: 10px; border: 1px solid #c3c3c3 }`],
     template: `
       <div class='contact-card'>
         <h2>{{ contact.name }}</h2>
@@ -23,6 +23,7 @@ export class ContactElement implements OnInit {
   }
 
   editContact(c: ContactItem) {
+    console.log('Item for editing', c);
     alert("Needs implementation " + c.name);
   }
 

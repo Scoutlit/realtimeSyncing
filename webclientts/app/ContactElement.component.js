@@ -28,6 +28,7 @@ System.register(['angular2/core', './ContactList.component'], function(exports_1
                     // console.log('contact - ', this.contact)
                 };
                 ContactElement.prototype.editContact = function (c) {
+                    console.log('Item for editing', c);
                     alert("Needs implementation " + c.name);
                 };
                 __decorate([
