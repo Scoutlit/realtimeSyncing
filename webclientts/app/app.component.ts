@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {ContactList} from './ContactList.component';
+import {ContactList} from './ContactList/ContactList.component';
 import {HTTP_PROVIDERS}    from 'angular2/http';
 
 @Component({
