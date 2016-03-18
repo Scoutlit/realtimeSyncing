@@ -14,4 +14,4 @@ System.register([], function(exports_1, context_1) {
         }
     }
 });
-//# sourceMappingURL=ContacttItem.js.map
+//# sourceMappingURL=ContactItem.js.map

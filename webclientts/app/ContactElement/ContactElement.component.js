@@ -33,7 +33,7 @@ System.register(['angular2/core', '../models/ContactItem'], function(exports_1, 
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', (typeof (_a = typeof ContactItem_1.ContactItem !== 'undefined' && ContactItem_1.ContactItem) === 'function' && _a) || Object)
+                    __metadata('design:type', ContactItem_1.ContactItem)
                 ], ContactElement.prototype, "contact", void 0);
                 ContactElement = __decorate([
                     core_1.Component({
@@ -44,7 +44,6 @@ System.register(['angular2/core', '../models/ContactItem'], function(exports_1, 
                     __metadata('design:paramtypes', [])
                 ], ContactElement);
                 return ContactElement;
-                var _a;
             }());
             exports_1("ContactElement", ContactElement);
         }
