@@ -11,7 +11,7 @@ System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactEle
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, http_1, ContactElement_component_1;
-    var ContactList, ContactItem;
+    var ContactList;
     return {
         setters:[
             function (core_1_1) {
@@ -53,12 +53,6 @@ System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactEle
                 return ContactList;
             }());
             exports_1("ContactList", ContactList);
-            ContactItem = (function () {
-                function ContactItem() {
-                }
-                return ContactItem;
-            }());
-            exports_1("ContactItem", ContactItem);
         }
     }
 });

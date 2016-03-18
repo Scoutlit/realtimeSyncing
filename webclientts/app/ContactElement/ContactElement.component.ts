@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from 'angular2/core';
-import {ContactItem} from './../ContactList/ContactList.component'
+import {ContactItem} from '../models/ContactItem'
 
 @Component({
     selector: 'contact-element',

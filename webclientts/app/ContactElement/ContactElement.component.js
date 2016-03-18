@@ -1,4 +1,4 @@
-System.register(['angular2/core', './../ContactList/ContactList.component'], function(exports_1, context_1) {
+System.register(['angular2/core', '../models/ContactItem'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,15 @@ System.register(['angular2/core', './../ContactList/ContactList.component'], fun
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, ContactList_component_1;
+    var core_1, ContactItem_1;
     var ContactElement;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (ContactList_component_1_1) {
-                ContactList_component_1 = ContactList_component_1_1;
+            function (ContactItem_1_1) {
+                ContactItem_1 = ContactItem_1_1;
             }],
         execute: function() {
             ContactElement = (function () {
@@ -33,7 +33,7 @@ System.register(['angular2/core', './../ContactList/ContactList.component'], fun
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', ContactList_component_1.ContactItem)
+                    __metadata('design:type', (typeof (_a = typeof ContactItem_1.ContactItem !== 'undefined' && ContactItem_1.ContactItem) === 'function' && _a) || Object)
                 ], ContactElement.prototype, "contact", void 0);
                 ContactElement = __decorate([
                     core_1.Component({
@@ -44,6 +44,7 @@ System.register(['angular2/core', './../ContactList/ContactList.component'], fun
                     __metadata('design:paramtypes', [])
                 ], ContactElement);
                 return ContactElement;
+                var _a;
             }());
             exports_1("ContactElement", ContactElement);
         }
