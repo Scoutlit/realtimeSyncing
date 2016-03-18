@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactElement.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactElement.component', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactEle
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, ContactElement_component_1;
+    var core_1, http_1, ContactElement_component_1, router_1;
     var ContactList;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactEle
             },
             function (ContactElement_component_1_1) {
                 ContactElement_component_1 = ContactElement_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             ContactList = (function () {
@@ -45,8 +48,8 @@ System.register(['angular2/core', 'angular2/http', '../ContactElement/ContactEle
                     core_1.Component({
                         selector: 'contact-list',
                         styles: [".contact-list { padding: 5px;}"],
-                        template: "\n      <div class=\"contact-list\">\n        <h2>Contact List</h2>\n        <button (click)=\"addContact()\">Add</button>\n        <contact-element *ngFor=\"#contact of contacts\" [contact]=\"contact\"></contact-element>\n      </div>\n    ",
-                        directives: [ContactElement_component_1.ContactElement]
+                        template: "\n      <div class=\"contact-list\">\n        <h2>Contact List</h2>\n        <a [routerLink]=\"['AddContact']\">Add Contact</a>\n        <router-outlet></router-outlet>\n        <contact-element *ngFor=\"#contact of contacts\" [contact]=\"contact\"></contact-element>\n      </div>\n    ",
+                        directives: [ContactElement_component_1.ContactElement, router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [http_1.Http])
                 ], ContactList);

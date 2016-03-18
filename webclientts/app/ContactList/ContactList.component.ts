@@ -2,6 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {Observable}     from 'rxjs/Observable';
 import {ContactElement} from '../ContactElement/ContactElement.component';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'contact-list',
@@ -9,11 +10,12 @@ import {ContactElement} from '../ContactElement/ContactElement.component';
     template: `
       <div class="contact-list">
         <h2>Contact List</h2>
-        <button (click)="addContact()">Add</button>
+        <a [routerLink]="['AddContact']">Add Contact</a>
+        <router-outlet></router-outlet>
         <contact-element *ngFor="#contact of contacts" [contact]="contact"></contact-element>
       </div>
     `,
-    directives: [ContactElement]
+    directives: [ContactElement, ROUTER_DIRECTIVES]
 })
 
 export class ContactList implements OnInit {

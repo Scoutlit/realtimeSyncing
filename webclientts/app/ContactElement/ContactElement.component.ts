@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {ContactItem} from '../models/ContactItem'
+import {Router} from 'angular2/router';
 
 @Component({
     selector: 'contact-element',
@@ -12,19 +13,15 @@ import {ContactItem} from '../models/ContactItem'
       </div>
     `
 })
-export class ContactElement implements OnInit {
+export class ContactElement {
 
   @Input() contact: ContactItem;
-
-  constructor() {}
-
-  ngOnInit() {
-    // console.log('contact - ', this.contact)
-  }
+  
+  constructor(private _router: Router) {}
 
   editContact(c: ContactItem) {
     console.log('Item for editing', c);
-    alert("Needs implementation " + c.name);
+    this._router.navigate( ['EditContact', { contact: c }] );
   }
 
 }

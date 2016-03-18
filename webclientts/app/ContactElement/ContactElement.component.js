@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../models/ContactItem'], function(exports_1, context_1) {
+System.register(['angular2/core', '../models/ContactItem', 'angular2/router'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../models/ContactItem'], function(exports_1, 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, ContactItem_1;
+    var core_1, ContactItem_1, router_1;
     var ContactElement;
     return {
         setters:[
@@ -19,17 +19,18 @@ System.register(['angular2/core', '../models/ContactItem'], function(exports_1, 
             },
             function (ContactItem_1_1) {
                 ContactItem_1 = ContactItem_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             ContactElement = (function () {
-                function ContactElement() {
+                function ContactElement(_router) {
+                    this._router = _router;
                 }
-                ContactElement.prototype.ngOnInit = function () {
-                    // console.log('contact - ', this.contact)
-                };
                 ContactElement.prototype.editContact = function (c) {
                     console.log('Item for editing', c);
-                    alert("Needs implementation " + c.name);
+                    this._router.navigate(['EditContact', { contact: c }]);
                 };
                 __decorate([
                     core_1.Input(), 
@@ -41,7 +42,7 @@ System.register(['angular2/core', '../models/ContactItem'], function(exports_1, 
                         styles: [".contact-card { margin-bottom: 5px; padding: 10px; border: 1px solid #c3c3c3 }"],
                         template: "\n      <div class='contact-card'>\n        <h2>{{ contact.name }}</h2>\n        <h3>{{ contact.phoneNumber }}</h3>\n        <button (click)=\"editContact(contact)\">Edit</button>\n      </div>\n    "
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], ContactElement);
                 return ContactElement;
             }());
