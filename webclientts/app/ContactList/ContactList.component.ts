@@ -1,6 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
-import {Observable}     from 'rxjs/Observable';
 import {ContactElement} from '../ContactElement/ContactElement.component';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactManagerService} from '../services/ContactManagerService';
@@ -24,21 +22,10 @@ export class ContactList implements OnInit {
 
   contacts: ContactItem [];
 
-  constructor(private http: Http,
-              private contactMananger: ContactManagerService) {}
+  constructor(private contactMananger: ContactManagerService) {}
 
   ngOnInit() {
-     //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
-    this.http.get('http://localhost:8888/contact')
-      .map(resp => resp.json())
-      .subscribe(data => {
-        this.contacts = data
-        // console.log("contacts - ", this.contacts);
-      })
+    this.contactMananger.getContacts()
+      .then(contacts => { this.contacts = contacts });
   }
-
-  addContact() {
-    alert("Needs implementation");
-  }
-
 }
