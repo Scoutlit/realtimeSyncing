@@ -20,8 +20,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             //import socketIOClient from 'socket.io-client';
             //import sailsIOClient from 'sails.io.js'
-            console.log(socketIOClient);
-            console.log(sailsIOClient);
+            //console.log(socketIOClient);
+            //console.log(sailsIOClient);
             ContactManagerService = (function () {
                 function ContactManagerService() {
                     //let io = sailsIOClient(socketIOClient);

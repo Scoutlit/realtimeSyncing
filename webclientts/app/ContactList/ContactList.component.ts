@@ -3,6 +3,7 @@ import {Http, Response} from 'angular2/http';
 import {Observable}     from 'rxjs/Observable';
 import {ContactElement} from '../ContactElement/ContactElement.component';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ContactManagerService} from '../services/ContactManagerService';
 
 @Component({
     selector: 'contact-list',
@@ -15,14 +16,16 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
         <contact-element *ngFor="#contact of contacts" [contact]="contact"></contact-element>
       </div>
     `,
-    directives: [ContactElement, ROUTER_DIRECTIVES]
+    directives: [ContactElement, ROUTER_DIRECTIVES],
+    providers: [ContactManagerService]
 })
 
 export class ContactList implements OnInit {
 
   contacts: ContactItem [];
 
-  constructor(private http: Http) {}
+  constructor(private http: Http,
+              private contactMananger: ContactManagerService) {}
 
   ngOnInit() {
      //this.contacts = [{ name: "Wendy" }, {name: "Jonathan"}, { name: "Wendy"}];
