@@ -1,19 +1,19 @@
 import {Injectable} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
-//import socketIOClient from 'socket.io-client';
-//import sailsIOClient from 'sails.io.js'
+import * as socketIOClient from 'socket.io-client';
+import * as sailsIOClient from 'sails.io.js'
+import {ContactItem} from '../models/ContactItem';
 
-//console.log(socketIOClient);
-//console.log(sailsIOClient);
+//console.log('socket client', socketIOClient);
+//console.log('sails client', sailsIOClient);
 
 @Injectable()
 export class ContactManagerService {
 
   constructor(private http: Http) {
-
     //let io = sailsIOClient(socketIOClient);
     //io.sails.url = 'http://localhost:8888';
-    //console.log('io', io);
+    //console.log('io', socketIOClient);
   }
 
   getContacts() {

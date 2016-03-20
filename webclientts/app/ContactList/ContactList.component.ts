@@ -2,10 +2,11 @@ import {Component, OnInit} from 'angular2/core';
 import {ContactElement} from '../ContactElement/ContactElement.component';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ContactManagerService} from '../services/ContactManagerService';
+import {ContactItem} from '../models/ContactItem';
 
 @Component({
     selector: 'contact-list',
-    styles: [`.contact-list { padding: 5px;}`]
+    styles: [`.contact-list { padding: 5px;}`],
     template: `
       <div class="contact-list">
         <h2>Contact List</h2>

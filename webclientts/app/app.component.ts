@@ -7,13 +7,13 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: 'my-app',
-    styles:[`.contact-manager-title { color: #121212; }`]
+    styles:[`.contact-manager-title { color: #121212; }`],
     template: `
     <div>
       <h1 class="contact-manager-title">Contact Manager Angular Client</h1>
       <contact-list></contact-list>
     </div>
-`
+`,
     directives: [ContactList]
 })
 @RouteConfig([

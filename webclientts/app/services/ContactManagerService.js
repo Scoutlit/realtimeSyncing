@@ -21,16 +21,14 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                 http_1 = http_1_1;
             }],
         execute: function() {
-            //import socketIOClient from 'socket.io-client';
-            //import sailsIOClient from 'sails.io.js'
-            //console.log(socketIOClient);
-            //console.log(sailsIOClient);
+            //console.log('socket client', socketIOClient);
+            //console.log('sails client', sailsIOClient);
             ContactManagerService = (function () {
                 function ContactManagerService(http) {
                     this.http = http;
                     //let io = sailsIOClient(socketIOClient);
                     //io.sails.url = 'http://localhost:8888';
-                    //console.log('io', io);
+                    //console.log('io', socketIOClient);
                 }
                 ContactManagerService.prototype.getContacts = function () {
                     var _this = this;
