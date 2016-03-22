@@ -28,5 +28,11 @@ export class ContactList implements OnInit {
   ngOnInit() {
     this.contactMananger.getContacts()
       .then(contacts => { this.contacts = contacts });
+
+    this.contactMananger.subscribeToNewContacts(function(newContact) {
+      console.log('new contact', newContact);
+      this.contacts.push(newContact.data);
+      console.log('new contact list', this.contacts);
+    }.bind(this))
   }
 }

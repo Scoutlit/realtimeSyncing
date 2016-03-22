@@ -21,25 +21,24 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                 http_1 = http_1_1;
             }],
         execute: function() {
-            //console.log('socket client', socketIOClient);
-            //console.log('sails client', sailsIOClient);
             ContactManagerService = (function () {
                 function ContactManagerService(http) {
                     this.http = http;
-                    //let io = sailsIOClient(socketIOClient);
-                    //io.sails.url = 'http://localhost:8888';
-                    //console.log('io', socketIOClient);
+                    this.socket = io.socket;
+                    io.socket.on('connect', function () {
+                        console.log('connected');
+                    });
                 }
                 ContactManagerService.prototype.getContacts = function () {
                     var _this = this;
                     return new Promise(function (resolve) {
-                        _this.http.get('http://localhost:8888/contact')
-                            .map(function (resp) { return resp.json(); })
-                            .subscribe(function (data) {
-                            resolve(data);
-                            // console.log("contacts - ", this.contacts);
+                        _this.socket.get('/contact', function (body) {
+                            resolve(body);
                         });
                     });
+                };
+                ContactManagerService.prototype.subscribeToNewContacts = function (newContactFunc) {
+                    this.socket.on('contact', newContactFunc);
                 };
                 ContactManagerService = __decorate([
                     core_1.Injectable(), 

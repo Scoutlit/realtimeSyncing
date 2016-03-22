@@ -35,6 +35,11 @@ System.register(['angular2/core', '../ContactElement/ContactElement.component', 
                     var _this = this;
                     this.contactMananger.getContacts()
                         .then(function (contacts) { _this.contacts = contacts; });
+                    this.contactMananger.subscribeToNewContacts(function (newContact) {
+                        console.log('new contact', newContact);
+                        this.contacts.push(newContact.data);
+                        console.log('new contact list', this.contacts);
+                    }.bind(this));
                 };
                 ContactList = __decorate([
                     core_1.Component({

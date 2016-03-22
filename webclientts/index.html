@@ -18,11 +18,10 @@
     <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
 
     <!-- Include sails.io.js -->
-    <script src="node_modules/socket.io-client/socket.io.js"></script>
-    <script src="node_modules/sails.io.js/sails.io.js"></script>
-    <script type="text/javascript">
-      io.sails.url = 'https://localhost:8888';
-    </script>
+    <script src="libs/sails.io.js"></script>
+		<script>
+			io.sails.url = "http://localhost:8888";
+		</script>
 
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
