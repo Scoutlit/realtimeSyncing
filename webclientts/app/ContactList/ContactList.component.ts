@@ -21,7 +21,7 @@ import {ContactItem} from '../models/ContactItem';
 
 export class ContactList implements OnInit {
 
-  contacts: ContactItem [];
+  contacts: ContactItem [] = [];
 
   constructor(private contactMananger: ContactManagerService) {}
 
@@ -29,10 +29,9 @@ export class ContactList implements OnInit {
     this.contactMananger.getContacts()
       .then(contacts => { this.contacts = contacts });
 
-    this.contactMananger.subscribeToNewContacts(function(newContact) {
+    this.contactMananger.subscribeToNewContacts(zone.bind(newContact => {
       console.log('new contact', newContact);
       this.contacts.push(newContact.data);
-      console.log('new contact list', this.contacts);
-    }.bind(this))
+    }));
   }
 }

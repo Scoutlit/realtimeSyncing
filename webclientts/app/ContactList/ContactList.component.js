@@ -30,16 +30,16 @@ System.register(['angular2/core', '../ContactElement/ContactElement.component', 
             ContactList = (function () {
                 function ContactList(contactMananger) {
                     this.contactMananger = contactMananger;
+                    this.contacts = [];
                 }
                 ContactList.prototype.ngOnInit = function () {
                     var _this = this;
                     this.contactMananger.getContacts()
                         .then(function (contacts) { _this.contacts = contacts; });
-                    this.contactMananger.subscribeToNewContacts(function (newContact) {
+                    this.contactMananger.subscribeToNewContacts(zone.bind(function (newContact) {
                         console.log('new contact', newContact);
-                        this.contacts.push(newContact.data);
-                        console.log('new contact list', this.contacts);
-                    }.bind(this));
+                        _this.contacts.push(newContact.data);
+                    }));
                 };
                 ContactList = __decorate([
                     core_1.Component({
