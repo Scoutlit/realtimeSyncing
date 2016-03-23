@@ -27,17 +27,25 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                     this.socket = io.socket;
                     io.socket.on('connect', function () {
                         console.log('connected');
+                        // this.socket.on('contact', evt => {
+                        // Submit an event with the server information
+                        // console.log('Something changed in the contact manager server', evt);
+                        //})
                     });
                 }
                 ContactManagerService.prototype.getContacts = function () {
                     var _this = this;
+                    // Get all contacts from the server
                     return new Promise(function (resolve) {
+                        // Use websockets to get the contacts
                         _this.socket.get('/contact', function (body) {
+                            console.log('response', body);
                             resolve(body);
                         });
                     });
                 };
                 ContactManagerService.prototype.subscribeToNewContacts = function (newContactFunc) {
+                    // subscribe to the contact 
                     this.socket.on('contact', newContactFunc);
                 };
                 ContactManagerService = __decorate([

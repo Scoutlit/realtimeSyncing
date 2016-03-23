@@ -29,9 +29,9 @@ export class ContactList implements OnInit {
     this.contactMananger.getContacts()
       .then(contacts => { this.contacts = contacts });
 
-    this.contactMananger.subscribeToNewContacts(zone.bind(newContact => {
+    this.contactMananger.subscribeToNewContacts(newContact => {
       console.log('new contact', newContact);
       this.contacts.push(newContact.data);
-    }));
+    });
   }
 }

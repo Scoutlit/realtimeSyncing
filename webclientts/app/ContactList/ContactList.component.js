@@ -36,10 +36,10 @@ System.register(['angular2/core', '../ContactElement/ContactElement.component', 
                     var _this = this;
                     this.contactMananger.getContacts()
                         .then(function (contacts) { _this.contacts = contacts; });
-                    this.contactMananger.subscribeToNewContacts(zone.bind(function (newContact) {
+                    this.contactMananger.subscribeToNewContacts(function (newContact) {
                         console.log('new contact', newContact);
                         _this.contacts.push(newContact.data);
-                    }));
+                    });
                 };
                 ContactList = __decorate([
                     core_1.Component({
