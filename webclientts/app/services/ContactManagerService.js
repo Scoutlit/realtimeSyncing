@@ -25,7 +25,8 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                 function ContactManagerService(http) {
                     this.http = http;
                     this.socket = io.socket;
-                    io.socket.on('connect', function () {
+                    console.log('socket', this.socket.on);
+                    this.socket.on('connect', function () {
                         console.log('connected');
                         // this.socket.on('contact', evt => {
                         // Submit an event with the server information
@@ -33,14 +34,31 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1, context_
                         //})
                     });
                 }
+                ContactManagerService.prototype.ngOnInit = function () {
+                    console.log('socket on init', this.socket.on);
+                    this.socket.on('connect', function () {
+                        console.log('connected');
+                        // this.socket.on('contact', evt => {
+                        // Submit an event with the server information
+                        // console.log('Something changed in the contact manager server', evt);
+                        //})
+                    });
+                };
                 ContactManagerService.prototype.getContacts = function () {
                     var _this = this;
                     // Get all contacts from the server
                     return new Promise(function (resolve) {
                         // Use websockets to get the contacts
-                        _this.socket.get('/contact', function (body) {
-                            console.log('response', body);
-                            resolve(body);
+                        //this.socket.get('/contact', function(body) {
+                        //  console.log('response', body);
+                        //  resolve(body);
+                        //});
+                        _this.http.get('http://localhost:8888/contact')
+                            .map(function (resp) { return resp.json(); })
+                            .subscribe(function (data) {
+                            resolve(data);
+                            // console.log("contacts - ", this.contacts);
+                            //       })})
                         });
                     });
                 };

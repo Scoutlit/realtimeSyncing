@@ -21,6 +21,9 @@
     <script src="libs/sails.io.js"></script>
 		<script>
 			io.sails.url = "http://localhost:8888";
+      io.socket.on('connect', function() {
+        console.log('connected');
+      });
 		</script>
 
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>

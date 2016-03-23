@@ -1,0 +1,22 @@
+<html>
+<head></head>
+<body>
+  <h1>Sails simple web app</h1>
+  <script src="sails.io.js"></script>
+  <script>
+    (function() {
+      console.log('app starting...');
+      io.sails.url = 'http://localhost:8888';
+      io.socket.on('connect', function() {
+        console.log('sails app connected');
+      });
+      io.socket.get('/contact', function(body) {
+        console.log('data', body);
+      });
+      io.socket.on('contact', function(evt) {
+        console.log('Something changed', evt);
+      })
+    })()
+  </script>
+</body>
+</html>
