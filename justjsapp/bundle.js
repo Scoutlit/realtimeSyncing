@@ -74,7 +74,7 @@
 	  _classCallCheck(this, App);
 
 	  var selectorId = id || 'app';
-	  this.element = document.getElementById('main');
+	  this.element = document.getElementById(selectorId);
 	  this.element.innerHTML = 'Hello World!';
 	};
 
