@@ -70,13 +70,14 @@ angular.module('starter.controllers', ['starter.services'])
           return c.id === id;
         });
         if (contactContainer){
-          contacts.splice(indexOf(contactContainer[0]),1);
+          contacts.contacts.splice(contacts.contacts.indexOf(contactContainer[0]),1);
         }
         break;
       default:
         throw new Error('That event type is not recognized');
         break;
     }
+    $scope.$apply();
   }
 
   contactService.bind(updateData);
