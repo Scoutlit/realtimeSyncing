@@ -2,7 +2,8 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="contact in contacts.contacts" href="#/app/contacts/{{contact.id}}">
-        {{ contact.name }}
+        {{ contact.name }} <br>
+        {{ contact.phoneNumber }}
       </ion-item>
     </ion-list>
   </ion-content>

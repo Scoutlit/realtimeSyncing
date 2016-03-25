@@ -34,24 +34,79 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('ContactsCtrl', function(contactService) {
+.controller('ContactsCtrl', function(contactService, SOCKET_EVENTS, $scope) {
 
   var contacts = this;
 
+  contacts.contacts = [];
+
   contactService.getContacts()
-    .then(function(serverContacts) {
+  .then(function(serverContacts) {
 
-      contacts.contacts = serverContacts;
+    contacts.contacts = serverContacts;
 
-    })
+  });
+
+  function updateData(resp) {
+    switch (resp.verb) {
+      case SOCKET_EVENTS.ADDED:
+        console.log('element added', resp);
+        contacts.contacts.push(resp.data);
+        break;
+      case SOCKET_EVENTS.UPDATED:
+        console.log('element updated', resp);
+        var id = parseInt(resp.id);
+        var contactContainer = contacts.contacts.filter(function(c) {
+          return c.id === id;
+        });
+        if (contactContainer){
+          angular.merge(contactContainer[0], resp.data);
+        }
+        break;
+      case SOCKET_EVENTS.REMOVED:
+        console.log('element removed', resp);
+        var id = parseInt(resp.id);
+        var contactContainer = contacts.contacts.filter(function(c) {
+          return c.id === id;
+        });
+        if (contactContainer){
+          contacts.splice(indexOf(contactContainer[0]),1);
+        }
+        break;
+      default:
+        throw new Error('That event type is not recognized');
+        break;
+    }
+  }
+
+  contactService.bind(updateData);
 })
 
-.controller('ContactCtrl', function($stateParams, $http) {
+.controller('ContactCtrl', function($stateParams, contactService) {
   var contact = this;
-  $http.get('http://localhost:8888/contact/' + $stateParams.contactId)
+  contactService.getContact($stateParams.contactId)
     .then(function(resp) {
+      contact.contact = resp;
+    });
 
-      contact.contact = resp.data;
+  function updateData(resp) {
+    switch (resp.verb) {
+      case SOCKET_EVENTS.ADDED:
+        console.log('element added', resp);
+        break;
+      case SOCKET_EVENTS.UPDATED:
+        console.log('element updated', resp);
+        // TODO update contact
+        break;
+      case SOCKET_EVENTS.REMOVED:
+        console.log('element removed', resp);
+        // TODO removed contact from the list
+        break;
+      default:
+        throw new Error('That event type is not recognized');
+      break;
+    }
+  }
 
-    })
+  contactService.bind(updateData);
 });

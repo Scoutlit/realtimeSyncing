@@ -21,7 +21,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
 })
-
+.constant('SOCKET_EVENTS', {
+  ADDED: 'created',
+  UPDATED: 'updated',
+  REMOVED: 'destroyed'
+})
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
