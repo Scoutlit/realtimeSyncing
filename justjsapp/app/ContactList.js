@@ -68,7 +68,6 @@ export default class ContactList {
       return contact.contact.id === contactId;
     });
 
-    console.log('removing', this);
     this.element.firstChild.removeChild(contactCard.element);
   }
 

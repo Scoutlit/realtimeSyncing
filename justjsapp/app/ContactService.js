@@ -18,9 +18,7 @@ export default class ContactService {
 
   remove(id) {
     return new Promise((resolve) => {
-      console.log('removing ' + id);
       io.socket.delete('/contact/' + id, function(resp) {
-        console.log('deleted', resp);
         resolve(resp);
       });
     })
