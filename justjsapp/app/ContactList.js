@@ -5,10 +5,12 @@ import ContactService from './ContactService';
 import {EVENT_TYPES} from './ContactService';
 import _ from 'lodash';
 
+let instance = null;
+
 export default class ContactList {
 
   constructor() {
-    this.instance = this;
+    instance = this;
     this.viewEngine = ViewEngine.getInstance();
     this.materialService = MaterialService.getInstance();
     this.contactService = ContactService.getInstance();
@@ -66,12 +68,13 @@ export default class ContactList {
       return contact.contact.id === contactId;
     });
 
+    console.log('removing', this);
     this.element.firstChild.removeChild(contactCard.element);
   }
 
   updateView() {
 
-    let html = '<div>';
+    let html = '<div style="padding: 20px;">';
 
     _.each(this.contacts, (contact) => {
       html += '<contact-item></contact-item>';
@@ -89,9 +92,7 @@ export default class ContactList {
   }
 
   static getInstance() {
-    console.log('viewEngine', ViewEngine);
-    return this.instance ||
-      new ContactList(ViewEngine.getInstance(), MaterialService.getInstance());
+    return instance || new ContactList();
   }
 
 }

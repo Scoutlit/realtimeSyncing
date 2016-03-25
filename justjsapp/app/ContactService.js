@@ -1,9 +1,11 @@
 import Promise from 'bluebird';
 
+let instance = null;
+
 export default class ContactService {
 
   constructor() {
-    this.instance = this;
+    instance = this;
   }
 
   getContacts() {
@@ -14,6 +16,16 @@ export default class ContactService {
     });
   }
 
+  remove(id) {
+    return new Promise((resolve) => {
+      console.log('removing ' + id);
+      io.socket.delete('/contact/' + id, function(resp) {
+        console.log('deleted', resp);
+        resolve(resp);
+      });
+    })
+  }
+
   bind(cb) {
     io.socket.on('contact', (resp) => {
       cb(resp.verb, resp.data || resp.id);
@@ -21,7 +33,7 @@ export default class ContactService {
   }
 
   static getInstance() {
-    return this.instance || new ContactService();
+    return instance || new ContactService();
   }
 }
 

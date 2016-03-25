@@ -1,7 +1,9 @@
+let instance = null;
+
 export default class MaterialService {
 
   constructor() {
-    this.instance = this;
+    instance = this;
   }
 
   upgradeElement(element) {
@@ -9,7 +11,7 @@ export default class MaterialService {
   }
 
   static getInstance() {
-    return this.instance || new MaterialService();
+    return instance || new MaterialService();
   }
 
 }

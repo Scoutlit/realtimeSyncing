@@ -1,9 +1,11 @@
 import _ from 'lodash';
 
+let instance = null;
+
 export default class ViewEngine {
 
   constructor() {
-    this.instance = this;
+    instance = this;
     this.id = 1;
   }
 
@@ -31,7 +33,7 @@ export default class ViewEngine {
   }
 
   static getInstance() {
-    return this.instance || new ViewEngine();
+    return instance || new ViewEngine();
   }
 
 }
