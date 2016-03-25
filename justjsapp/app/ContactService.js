@@ -8,10 +8,9 @@ export default class ContactService {
 
   getContacts() {
     return new Promise((resolve) => {
-      resolve([
-        { name: 'Name 1'},
-        { name: 'Name 2'}
-      ]);
+      io.socket.get('/contact', function(body) {
+        resolve(body);
+      });
     });
   }
 
