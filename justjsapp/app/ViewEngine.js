@@ -22,6 +22,10 @@ export default class ViewEngine {
     return element;
   }
 
+  createElement(selector) {
+    return document.createElement(selector);
+  }
+
   getId() {
     return this.id++;
   }

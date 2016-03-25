@@ -2,6 +2,8 @@ import ViewEngine from './ViewEngine';
 import MaterialService from './MaterialService';
 import ContactCard from './ContactCard';
 import ContactService from './ContactService';
+import {EVENT_TYPES} from './ContactService';
+import _ from 'lodash';
 
 export default class ContactList {
 
@@ -26,6 +28,45 @@ export default class ContactList {
         this.bindElements();
       });
 
+    this.contactService.bind((event, respData) => {
+      switch (event) {
+        case EVENT_TYPES.ADDED:
+          this.addContact(respData);
+          break;
+        case EVENT_TYPES.UPDATED:
+          this.editContact(respData);
+          break;
+        case EVENT_TYPES.REMOVED:
+          this.removeContact(respData);
+          break;
+        default:
+          throw new Error('Event: '+ event  +' not found');
+          break;
+      }
+    });
+  }
+
+  addContact(newContact) { 
+    let newContactCardElement = this.viewEngine.createElement('contact-item');
+    this.element.firstChild.appendChild(newContactCardElement);
+    this.contactCards.push(new ContactCard(newContact));
+  }
+
+  editContact(updatedContact) {
+    let contactCard = _.find(this.contactCards, (contact) => {
+      return contact.contact.id === updatedContact.id;
+    });
+
+    contactCard.update(updatedContact);
+  }
+
+  removeContact(id) {
+    let contactId = parseInt(id);
+    let contactCard = _.find(this.contactCards, (contact) => {
+      return contact.contact.id === contactId;
+    });
+
+    this.element.firstChild.removeChild(contactCard.element);
   }
 
   updateView() {

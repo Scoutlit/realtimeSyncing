@@ -6,17 +6,19 @@ export default class ContactCard {
     this.viewEngine = ViewEngine.getInstance();
     this.contact = contact; 
     this.selector = 'contact-item';
-    this.init();
+    this.element = this.viewEngine.getElement(this.selector);
+    this.updateView();
   }
 
-  init() {
-    this.element = this.viewEngine.getElement(this.selector);
+  updateView() {
     this.element.innerHTML = '<div>' + this.contact.name + '</div>';
   }
 
-  updateContact(contact) {
+  update(contact) {
     this.contact = contact;
-    // Update view
+    // Remove element html
+    this.element.removeChild(this.element.firstChild);
+    // Recreate the element html
+    this.updateView();
   }
-
 }

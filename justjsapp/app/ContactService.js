@@ -14,7 +14,19 @@ export default class ContactService {
     });
   }
 
+  bind(cb) {
+    io.socket.on('contact', (resp) => {
+      cb(resp.verb, resp.data || resp.id);
+    })
+  }
+
   static getInstance() {
     return this.instance || new ContactService();
   }
+}
+
+export const EVENT_TYPES = {
+  ADDED: 'created',
+  UPDATED: 'updated',
+  REMOVED: 'destroyed',
 }
