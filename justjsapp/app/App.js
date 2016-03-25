@@ -1,18 +1,18 @@
+import ContactList from './ContactList';
+
 export default class App {
 
   constructor(id) {
     let selectorId = id || 'app';
     this.element = document.getElementById(selectorId);
-    this.element.innerHTML = 'Hello World! + change';
-    var button = document.createElement('button');
-    var textNode = document.createTextNode('Click Me!');
-    button.appendChild(textNode);
-    button.className = 'mdl-button mdl-js-button mdl-js-ripple-effect';
-    componentHandler.upgradeElement(button);
-    this.element.appendChild(button);
-    button.addEventListener('click', (e) => {
-      console.log('event', e)
-    })
+    this.element.innerHTML = 
+     `<div>
+        <h1>Contact Manager List</h1>
+        <contact-list id="contact-list"></contact-list>
+      </div>`;
+
+    this.contactList = ContactList.getInstance();
+    this.contactList.init();
   }
 
 }
