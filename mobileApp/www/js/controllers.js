@@ -85,6 +85,16 @@ angular.module('starter.controllers', ['starter.services'])
   contacts.edit = function(c) {
     $state.go('app.edit-contact', { contactId: c.id });
   }
+
+  contacts.delete = function(c) {
+    contactService.deleteContact(c)
+      .then(function(){
+        // Remove contact from the list
+        contacts.contacts.splice(contacts.contacts.indexOf(c), 1);
+      }, function() {
+        console.log('There was an error removin the contact');
+      });
+  }
 })
 
 .controller('ContactCtrl', function($stateParams, contactService, $scope, SOCKET_EVENTS) {

@@ -41,10 +41,25 @@ angular.module('starter.services', [])
       return defer.promise;
     };
 
+    var deleteContact = function(contact) {
+      var defer = $q.defer();
+
+      io.socket.delete('/contact/' + contact.id, function(resp, jwr) {
+        if (jwr.statusCode === 200) {
+          defer.resolve(resp);
+        } else {
+          defer.reject('error deleting contact');
+        }
+      })
+
+      return defer.promise;
+    };
+
     return {
       getContacts: getContacts,
       getContact: getContact,
       updateContact: updateContact,
+      deleteContact: deleteContact,
       bind: bind
     };
 

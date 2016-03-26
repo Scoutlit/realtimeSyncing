@@ -4,9 +4,11 @@
       <ion-item ng-repeat="contact in contactsCtrl.contacts" href="#/app/contact/{{contact.id}}">
         <h2>{{ contact.name }}</h2>
         <p>{{ contact.phoneNumber }}</p>
-        <ion-option-button class="button-positive"
+        <ion-option-button class="icon ion-edit button-positive"
           ng-click="contactsCtrl.edit(contact)">
-          Edit
+        </ion-option-button>
+        <ion-option-button class="icon ion-trash-b button-assertive"
+          ng-click="contactsCtrl.delete(contact)">
         </ion-option-button>
       </ion-item>
     </ion-list>
