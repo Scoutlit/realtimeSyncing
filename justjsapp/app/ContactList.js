@@ -65,28 +65,72 @@ export default class ContactList {
   showDialog(contact) {
     var dialog = this.element.querySelector('dialog');
     dialog.innerHTML = `
-             <h4 class="mdl-dialog__title">Edit Contact</h4>
-              <div class="mdl-dialog__content">
-                <p>
-                ${contact.name}
-                </p>
-              </div>
-              <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button update">Update</button>
-                <button type="button" class="mdl-button close delete">Cancel</button>
-              </div>
+        <h4 class="mdl-dialog__title">Edit Contact</h4>
+        <div class="mdl-dialog__content">
+          <form action="#" name='editContactForm'>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" name="contact-name" id="contact-name" value="${contact.name}">
+                <label class="mdl-textfield__label" for="contact-name"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="contact-phone-number" value="${contact.phoneNumber}">
+                <label class="mdl-textfield__label" for="contact-phone-number"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="contact-address" value="${contact.address}">
+                <label class="mdl-textfield__label" for="contact-address"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="contact-city" value="${contact.city}">
+                <label class="mdl-textfield__label" for="contact-city"></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="contact-country" value="${contact.country}">
+                <label class="mdl-textfield__label" for="contact-country"></label>
+            </div>
+          </form>
+        </div>
+        <div class="mdl-dialog__actions">
+          <button type="button" class="mdl-button update">Update</button>
+          <button type="button" class="mdl-button close delete">Cancel</button>
+        </div>
     `;
-    var deleteBtn = dialog.querySelector('.mdl-button.delete');
+    
+    var deleteBtn = this.viewEngine.querySelector('.mdl-button.delete');
     deleteBtn.addEventListener('click', function() {
       dialog.close();
     });
 
-    var updateBtn = dialog.querySelector('.mdl-button.update');
-    updateBtn.addEventListener('click', function() {
-      console.log('Updating...');
-      dialog.close();
-    });
+    var updateBtn = this.viewEngine.querySelector('.mdl-button.update');
+    updateBtn.addEventListener('click', function(e) {
+      var form = this.viewEngine.querySelector('form', dialog);
+      var updatedContact = {
+        id: contact.id,
+        name: form['contact-name'].value,
+        phoneNumber: form['contact-phone-number'].value,
+        address: form['contact-address'].value,
+        city: form['contact-city'].value,
+        country: form['contact-country'].value
+      };
 
+      this.contactService.update(updatedContact)
+        .then(function(respContact) {
+
+          let cCard = _.find(this.contactCards, (c) => {
+            return c.contact.id === respContact.id;
+          });
+
+          cCard.update(respContact);
+
+        }.bind(this), function() {
+          console.log('There was an error updating contact');
+        }.bind(this));
+
+      dialog.close();
+
+    }.bind(this));
+
+    this.materialService.upgradeElement(dialog);
     dialog.showModal();
   }
 

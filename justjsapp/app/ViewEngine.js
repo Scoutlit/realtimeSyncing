@@ -24,6 +24,11 @@ export default class ViewEngine {
     return element;
   }
 
+  querySelector(selector, target) {
+    var trg = target || document;
+    return trg.querySelector(selector);
+  }
+
   createElement(selector) {
     return document.createElement(selector);
   }

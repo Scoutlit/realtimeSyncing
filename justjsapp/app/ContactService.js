@@ -24,6 +24,14 @@ export default class ContactService {
     })
   }
 
+  update(contact) {
+    return new Promise((resolve) => {
+      io.socket.put('/contact/' + contact.id, contact, function(resp) {
+        resolve(resp);
+      });
+    });
+  }
+
   bind(cb) {
     io.socket.on('contact', (resp) => {
       cb(resp.verb, resp.data || resp.id);
