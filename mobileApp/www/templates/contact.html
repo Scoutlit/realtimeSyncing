@@ -1,11 +1,26 @@
 <ion-view view-title="Contact Info">
   <ion-content>
-    <h1>{{ contactCtrl.contact.name }}</h1>
-    <h4>{{ contactCtrl.contact.phoneNumber }}</h4>
-    <address>
-      {{ contactCtrl.contact.address }} <br>
-      {{ contactCtrl.contact.city }} <br>
-      {{ contactCtrl.contact.country }}
-    </address>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/face.jpeg">
+        <h2>{{ contactCtrl.contact.name }}</h2>
+        <p>{{ contactCtrl.contact.phoneNumber }}</p>
+      </div>
+
+      <div class="item item-body">
+        <p>
+          <address>
+            {{ contactCtrl.contact.address }} <br>
+            {{ contactCtrl.contact.city }} <br>
+            {{ contactCtrl.contact.country }}
+          </address>
+        </p>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+
+    </div>
   </ion-content>
 </ion-view>
