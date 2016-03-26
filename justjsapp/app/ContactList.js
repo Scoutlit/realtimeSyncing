@@ -62,6 +62,23 @@ export default class ContactList {
     contactCard.update(updatedContact);
   }
 
+  showDialog(contact) {
+    var dialog = this.element.querySelector('dialog');
+    dialog.innerHTML = `
+             <h4 class="mdl-dialog__title">Edit Contact</h4>
+              <div class="mdl-dialog__content">
+                <p>
+                ${contact.name}
+                </p>
+              </div>
+              <div class="mdl-dialog__actions">
+                <button type="button" class="mdl-button">Update</button>
+                <button type="button" class="mdl-button close">Cancel</button>
+              </div>
+    `;
+    dialog.showModal();
+  }
+
   removeContact(id) {
     let contactId = parseInt(id);
     let contactCard = _.find(this.contactCards, (contact) => {
@@ -79,8 +96,13 @@ export default class ContactList {
       html += '<contact-item></contact-item>';
     });
 
-    html += '</div>'
+    html += `<dialog class="mdl-dialog">
+            </dialog>`;
+
+    html += '</div>';
+
     this.element.innerHTML = html;
+    this.materialService.upgradeElement(this.element);
 
   }
 

@@ -55,6 +55,7 @@ export default class ContactCard {
   editContact() {
     // TODO Add a way to navigate to an update view
     console.log('Editing ', this.contact);
+    this.contactList.showDialog(this.contact);
   }
 
   deleteContact() {
