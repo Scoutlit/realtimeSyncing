@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['starter.services'])
   };
 })
 
-.controller('ContactsCtrl', function(contactService, SOCKET_EVENTS, $scope) {
+.controller('ContactsCtrl', function(contactService, SOCKET_EVENTS, $scope, $state) {
 
   var contacts = this;
 
@@ -81,6 +81,10 @@ angular.module('starter.controllers', ['starter.services'])
   }
 
   contactService.bind(updateData);
+
+  contacts.edit = function(c) {
+    $state.go('app.edit-contact', { contactId: c.id });
+  }
 })
 
 .controller('ContactCtrl', function($stateParams, contactService, $scope, SOCKET_EVENTS) {
@@ -113,4 +117,25 @@ angular.module('starter.controllers', ['starter.services'])
   }
 
   contactService.bind(updateData);
+
+})
+
+.controller('EditContactCtrl', function($ionicHistory, $stateParams, contactService, $state) {
+
+  var editContactCtrl = this;
+  
+  contactService.getContact($stateParams.contactId)
+    .then(function(resp) {
+      editContactCtrl.contact = resp;
+    });
+
+  editContactCtrl.update = function(contact) {
+    contactService.updateContact(contact)
+      .then(function() {
+        // $state.go('app.contacts');
+        $ionicHistory.goBack();
+      }, function() {
+        console.log('Error updating contact');
+      });
+  }
 });

@@ -1,9 +1,13 @@
 <ion-view view-title="Contacts">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="contact in contacts.contacts" href="#/app/contacts/{{contact.id}}">
-        {{ contact.name }} <br>
-        {{ contact.phoneNumber }}
+      <ion-item ng-repeat="contact in contactsCtrl.contacts" href="#/app/contact/{{contact.id}}">
+        <h2>{{ contact.name }}</h2>
+        <p>{{ contact.phoneNumber }}</p>
+        <ion-option-button class="button-positive"
+          ng-click="contactsCtrl.edit(contact)">
+          Edit
+        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

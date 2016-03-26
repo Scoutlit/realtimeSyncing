@@ -27,9 +27,24 @@ angular.module('starter.services', [])
       })
     }
 
+    var updateContact = function(contact) {
+      var defer = $q.defer();
+
+      io.socket.put('/contact/' + contact.id, contact, function(resp, jwr) {
+        if (jwr.statusCode === 200) {
+          defer.resolve(resp);
+        } else {
+          defer.reject('error updating contact');
+        }
+      })
+
+      return defer.promise;
+    };
+
     return {
       getContacts: getContacts,
       getContact: getContact,
+      updateContact: updateContact,
       bind: bind
     };
 

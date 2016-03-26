@@ -46,32 +46,44 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
+    url: '/browse',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/browse.html'
       }
-    })
-    .state('app.contacts', {
-      url: '/contacts',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/contacts.html',
-          controller: 'ContactsCtrl as contacts'
-        }
+    }
+  })
+  .state('app.contacts', {
+    cache: false,
+    url: '/contact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contacts.html',
+        controller: 'ContactsCtrl as contactsCtrl'
       }
-    })
+    }
+  })
 
   .state('app.contact', {
-    url: '/contacts/:contactId',
+    url: '/contact/:contactId',
     views: {
       'menuContent': {
         templateUrl: 'templates/contact.html',
-        controller: 'ContactCtrl as contact'
+        controller: 'ContactCtrl as contactCtrl'
+      }
+    }
+  })
+  
+  .state('app.edit-contact', {
+    url: '/contact/:contactId/edit',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contact-edit.html',
+        controller: 'EditContactCtrl as editContactCtrl'
       }
     }
   });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/contacts');
+  $urlRouterProvider.otherwise('/app/contact');
 });
