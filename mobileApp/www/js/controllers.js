@@ -83,7 +83,7 @@ angular.module('starter.controllers', ['starter.services'])
   contactService.bind(updateData);
 })
 
-.controller('ContactCtrl', function($stateParams, contactService) {
+.controller('ContactCtrl', function($stateParams, contactService, $scope, SOCKET_EVENTS) {
   var contact = this;
   contactService.getContact($stateParams.contactId)
     .then(function(resp) {
@@ -96,8 +96,10 @@ angular.module('starter.controllers', ['starter.services'])
         console.log('element added', resp);
         break;
       case SOCKET_EVENTS.UPDATED:
-        console.log('element updated', resp);
-        // TODO update contact
+        var id = parseInt(resp.id);
+        if (contact.contact.id === id) {
+          angular.merge(contact.contact, resp.data);
+        }
         break;
       case SOCKET_EVENTS.REMOVED:
         console.log('element removed', resp);
@@ -107,6 +109,7 @@ angular.module('starter.controllers', ['starter.services'])
         throw new Error('That event type is not recognized');
       break;
     }
+    $scope.$apply();
   }
 
   contactService.bind(updateData);
