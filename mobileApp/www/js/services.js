@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngCordova'])
   .service('contactService', ['$q', function($q) {
 
     var getContacts = function() {
