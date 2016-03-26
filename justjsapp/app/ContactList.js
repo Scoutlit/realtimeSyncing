@@ -72,10 +72,21 @@ export default class ContactList {
                 </p>
               </div>
               <div class="mdl-dialog__actions">
-                <button type="button" class="mdl-button">Update</button>
-                <button type="button" class="mdl-button close">Cancel</button>
+                <button type="button" class="mdl-button update">Update</button>
+                <button type="button" class="mdl-button close delete">Cancel</button>
               </div>
     `;
+    var deleteBtn = dialog.querySelector('.mdl-button.delete');
+    deleteBtn.addEventListener('click', function() {
+      dialog.close();
+    });
+
+    var updateBtn = dialog.querySelector('.mdl-button.update');
+    updateBtn.addEventListener('click', function() {
+      console.log('Updating...');
+      dialog.close();
+    });
+
     dialog.showModal();
   }
 
