@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('cmapp.services')
   .service('contactService', ['$q', function($q) {
 
     var getContacts = function() {
@@ -64,4 +64,3 @@ angular.module('starter.services', [])
     };
 
   }]);
-
