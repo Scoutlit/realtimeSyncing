@@ -29,8 +29,18 @@
     <script src="cordova.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
+    <!-- Angular libraries -->
+    <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="lib/ng-lodash/build/ng-lodash.js"></script>
+  </head>
+
+  <body ng-app="cmapp">
+    <ion-nav-view></ion-nav-view>
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/common/common.js"></script>
+    <script src="js/common/connectionService.js"></script>
     <script src="js/controllers/controllers.js"></script>
     <script src="js/controllers/AppCtrl.js"></script>
     <script src="js/controllers/ContactsCtrl.js"></script>
@@ -38,9 +48,5 @@
     <script src="js/controllers/EditContactCtrl.js"></script>
     <script src="js/services/services.js"></script>
     <script src="js/services/contactService.js"></script>
-  </head>
-
-  <body ng-app="cmapp">
-    <ion-nav-view></ion-nav-view>
   </body>
 </html>

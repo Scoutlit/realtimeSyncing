@@ -1,5 +1,5 @@
 angular.module('cmapp.controllers')
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope) {
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -31,4 +31,14 @@ angular.module('cmapp.controllers')
       $scope.closeLogin();
     }, 1000);
   };
+
+  // fakeout the connection
+  $scope.setConnected = function() {
+   $rootScope.$broadcast('$cordovaNetwork:online', true);
+  };
+
+  $scope.setDisconnected = function() {
+    $rootScope.$broadcast('$cordovaNetwork:offline', false);
+  };
+
 })
