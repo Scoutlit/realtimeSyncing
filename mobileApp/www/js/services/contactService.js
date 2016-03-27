@@ -50,6 +50,7 @@ angular.module('cmapp.services')
     };
 
     var sync = function() {
+      // Only sync when we are connected to the internet
       connectionService.checkConnection()
         .then(function(connected) {
           var d = $q.defer();
@@ -68,24 +69,40 @@ angular.module('cmapp.services')
         .then(function(serverContacts) {
             // Get local values
             var localContacts = localStorage.get('contacts');
-
+            var lastConnectionUTC = localStorage.get('lastConnectionUTC');
+            var localChangedContacts = lodash.filter(localContacts, function(c) {
+              return c.updatedAt > lastConnectionUTC;
+            });
+            
             console.log('local contacts', localContacts);
             console.log('server contacts', serverContacts);
 
-            localContacts = lodash.sortBy(localContacts, ['id']);
-            serverContacts = lodash.sortBy(serverContacts, ['id']);
-
-            var min = lodash.min([localContacts[0].id, serverContacts[0].id]);
-            var max = lodash.max([localContacts[localContacts.length - 1].id, localContacts[localContacts.length - 1].id])
-
-            // for(var id in lodash.)
-            var updatedLocalContacts = [];
-            // Compare to get updated, deleted and added
-
-            // Lets test with local updated only
-            lodash.each(updatedLocalContacts, function(c) {
-              io.socket.put('/contact/' + c.id, c);
+            lodash.each(serverContacts, function(sc) {
+              var lc = lodash.find(localContacts, function(c){
+                return c.id === sc.id;
+              });
+              if (lc) {
+                // The server updated the contact
+                lodash.merge(lc, sc);
+              } else {
+                // The server added the contact
+                localContacts.push(sc);
+              }
             });
+
+            // Update all records changed on the server
+            lodash.each(localChangedContacts, function(c) {
+              if (c.new) {
+                io.socket.post('/contact', c, function(createdContact){
+                  c.id = createdContact.id;
+                });
+              } else {
+                io.socket.put('/contact/' + c.id, c);
+              }
+            });
+
+            // Update local collection
+            localStorage.set('contacts', localContacts);
         })
     }
 
@@ -139,7 +156,6 @@ angular.module('cmapp.services')
         } else {
           // Set last time connected
           localStorage.set('lastConnectionUTC', new Date().getTime());
-
           // unbind
           io.socket.off('contact', callCB);
         }
