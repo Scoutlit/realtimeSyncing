@@ -137,6 +137,9 @@ angular.module('cmapp.services')
           io.socket.on('contact', callCB);
           // sync();
         } else {
+          // Set last time connected
+          localStorage.set('lastConnectionUTC', new Date().getTime());
+
           // unbind
           io.socket.off('contact', callCB);
         }
