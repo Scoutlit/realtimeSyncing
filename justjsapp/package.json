@@ -4,7 +4,8 @@
   "description": "A simple js, css and html vanilla app to use the socket library from sails",
   "main": "app/main.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "start": "webpack-dev-server"
   },
   "author": "Ovidio R. Calvet",
   "license": "MIT",

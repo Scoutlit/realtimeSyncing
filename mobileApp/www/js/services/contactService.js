@@ -73,7 +73,7 @@ angular.module('cmapp.services')
             var localChangedContacts = lodash.filter(localContacts, function(c) {
               return c.updatedAt > lastConnectionUTC;
             });
-            
+
             console.log('local contacts', localContacts);
             console.log('server contacts', serverContacts);
 
