@@ -70,8 +70,9 @@ angular.module('cmapp.services')
             // Get local values
             var localContacts = localStorage.get('contacts');
             var lastConnectionUTC = localStorage.get('lastConnectionUTC');
+
             var localChangedContacts = lodash.filter(localContacts, function(c) {
-              return c.updatedAt > lastConnectionUTC;
+                return c.updatedAt > lastConnectionUTC;
             });
 
             console.log('local contacts', localContacts);
