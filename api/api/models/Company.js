@@ -9,6 +9,14 @@ module.exports = {
 
   attributes: {
 
+  },
+
+
+  // Add change to change log
+  beforeUpdate: function(newCompany, cb) {
+    // Add change to change log
+    sails.log.info('updating', newCompany);
+    cb();
   }
 };
 

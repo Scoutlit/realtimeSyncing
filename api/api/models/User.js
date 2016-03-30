@@ -15,6 +15,13 @@ module.exports = {
     name: { type: 'string' },
     email: { type: 'string' },
     contacts: { collection: 'contact', via: 'user' }
+  },
+
+  // Add change to change log
+  beforeUpdate: function(newUser, cb) {
+    // Add change to change log
+    sails.log.info('updating', newUser);
+    cb();
   }
 };
 
