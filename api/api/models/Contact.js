@@ -16,6 +16,13 @@ module.exports = {
     company: { model: 'company' },
     companyExtension: { type: 'string' },
     user: { model: 'user' }
+  },
+
+  // Add change to change log
+  beforeUpdate: function(newContact, cb) {
+    // Add change to change log
+    sails.log.info('updating', newContact);
+    cb();
   }
 };
 
