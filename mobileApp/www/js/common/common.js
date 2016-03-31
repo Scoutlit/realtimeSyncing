@@ -5,8 +5,8 @@ angular.module('cmapp.common', ['ionic', 'ngCordova'])
     REMOVED: 'destroyed'
   })
   .constant('LOCALSTORAGE_KEYS', {
-    LAST_CONNECTION_UTC: '',
-    SAVED_CHANGES: '',
+    LAST_CONNECTION_UTC: 'lastConnectionUTC',
+    SAVED_CHANGES: 'disconnectedChanges',
     CONTACTS: 'contacts'
   })
   .constant('CORDOVA_EVENTS', {
