@@ -1,0 +1,12 @@
+rename-session realtime-sync
+rename-window workspace 
+send "vim" C-m
+split-window -h
+send "cd api && sails lift" C-m
+split-window -v
+send "cd justjsapp && npm start" C-m
+split-window -v
+send "cd mobileApp && ionic serve" C-m
+resize-pane -t 2 -U 10
+resize-pane -t 3 -U 4
+resize-pane -t 1 -R 15
