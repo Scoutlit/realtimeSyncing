@@ -1,18 +1,18 @@
 angular.module('cmapp.common')
-  .service('connectionService', function($q, $cordovaNetwork, $ionicPlatform, $rootScope) {
+  .service('connectionService', function($q, $cordovaNetwork, $ionicPlatform, $rootScope, CORDOVA_EVENTS) {
 
     var connected = null;
     var callback = null;
 
     // listen for Online event
-    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+    $rootScope.$on(CORDOVA_EVENTS.NETWORK_ONLINE, function(event, networkState){
       connected = networkState;
       if (callback) { callback(connected) }
       console.log('connection changed', networkState);
     });
 
     // listen for Offline event
-    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+    $rootScope.$on(CORDOVA_EVENTS.NETWORK_OFFLINE, function(event, networkState){
       connected = networkState;
       if (callback) { callback(connected) }
       console.log('connection changed', networkState);

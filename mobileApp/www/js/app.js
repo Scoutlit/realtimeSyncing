@@ -21,11 +21,6 @@ angular.module('cmapp', ['ionic', 'cmapp.controllers'])
     }
   });
 })
-.constant('SOCKET_EVENTS', {
-  ADDED: 'created',
-  UPDATED: 'updated',
-  REMOVED: 'destroyed'
-})
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

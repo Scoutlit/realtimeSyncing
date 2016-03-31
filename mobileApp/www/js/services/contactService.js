@@ -1,5 +1,6 @@
 angular.module('cmapp.services')
-  .service('contactService', ['$q', 'connectionService', 'localStorageService', 'lodash', function($q, connectionService, localStorage, lodash) {
+  .service('contactService', ['$q', 'connectionService', 'localStorageService', 'lodash', 'LOCALSTORAGE_KEYS', 
+           function($q, connectionService, localStorage, lodash, LOCALSTORAGE_KEYS) {
 
     var getContacts = function() {
       var defer = $q.defer();
@@ -11,11 +12,11 @@ angular.module('cmapp.services')
             io.socket.get('/contact', function(contacts) {
               defer.resolve(contacts);
               // update local storage
-              localStorage.set('contacts', contacts);
+              localStorage.set(LOCALSTORAGE_KEYS.CONTACTS, contacts);
             });
           } else {
             // use localstorage
-            var contacts = localStorage.get('contacts');
+            var contacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
             defer.resolve(contacts);
             console.log('using localstorage', contacts);
           }
@@ -36,7 +37,7 @@ angular.module('cmapp.services')
             });
           } else {
             // use localstorage
-            var contacts = localStorage.get('contacts');
+            var contacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
             var contact = lodash.find(contacts, function(c) {
               return c.id === id;
             });
@@ -68,8 +69,8 @@ angular.module('cmapp.services')
         })
         .then(function(serverContacts) {
             // Get local values
-            var localContacts = localStorage.get('contacts');
-            var lastConnectionUTC = localStorage.get('lastConnectionUTC');
+            var localContacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
+            var lastConnectionUTC = localStorage.get(LOCALSTORAGE_KEYS.LAST_CONNECTION_UTC);
 
             var localChangedContacts = lodash.filter(localContacts, function(c) {
                 return c.updatedAt > lastConnectionUTC;
@@ -113,7 +114,7 @@ angular.module('cmapp.services')
           if (connected) {
             // Only sync if connected
             io.socket.get('/contact',  function(contacts) {
-              localStorage.set('contacts', contacts);
+              localStorage.set(LOCALSTORAGE_KEYS.CONTACTS, contacts);
             });
           }
         });
@@ -125,7 +126,7 @@ angular.module('cmapp.services')
           if (connected) {
             // Get server values
             // Get local values
-            var contacts = localStorage.get('contacts');
+            var contacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
             // Compare to get updated, deleted and added
 
             // Lets test with all as updated
@@ -156,7 +157,7 @@ angular.module('cmapp.services')
           // sync();
         } else {
           // Set last time connected
-          localStorage.set('lastConnectionUTC', new Date().getTime());
+          localStorage.set(LOCALSTORAGE_KEYS.LAST_CONNECTION_UTC, new Date().getTime());
           // unbind
           io.socket.off('contact', callCB);
         }
@@ -179,14 +180,14 @@ angular.module('cmapp.services')
           } else {
             // Save in local storage
             console.log('saving to local storage');
-            var contacts = localStorage.get('contacts');
+            var contacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
             var thisContact = lodash.find(contacts, function(c) {
               return c.id === contact.id;
             });
 
             lodash.merge(thisContact, contact);
             defer.resolve(thisContact);
-            localStorage.set('contacts', contacts);
+            localStorage.set(LOCALSTORAGE_KEYS.CONTACTS, contacts);
           }
       })
 
@@ -209,14 +210,14 @@ angular.module('cmapp.services')
           } else {
             // Save in local storage
             console.log('removing from local storage');
-            var contacts = localStorage.get('contacts');
+            var contacts = localStorage.get(LOCALSTORAGE_KEYS.CONTACTS);
             var thisContact = lodash.find(contacts, function(c) {
               return c.id === contact.id;
             });
 
             contacts.splice(contacts.indexOf(thisContact), 1);
             defer.resolve(thisContact);
-            localStorage.set('contacts', contacts);
+            localStorage.set(LOCALSTORAGE_KEYS.CONTACTS, contacts);
           }
         });
 
